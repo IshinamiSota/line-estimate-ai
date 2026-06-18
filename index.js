@@ -1,5 +1,5 @@
 import express from "express";
-import line from "@line/bot-sdk";
+import { Client, middleware } from "@line/bot-sdk";
 
 const app = express();
 
@@ -8,13 +8,13 @@ const config = {
   channelSecret: process.env.LINE_CHANNEL_SECRET
 };
 
-const client = new line.Client(config);
+const client = new Client(config);
 
 app.get("/", (req, res) => {
   res.send("LINE bot server is working!");
 });
 
-app.post("/webhook", line.middleware(config), async (req, res) => {
+app.post("/webhook", middleware(config), async (req, res) => {
   try {
     await Promise.all(req.body.events.map(handleEvent));
     res.status(200).end();

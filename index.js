@@ -113,7 +113,20 @@ async function createEstimateReply(data) {
     ]
   });
 
-  return response.output_text;
+return response.output_text + `
+
+━━━━━━━━━━━━━━
+
+【無料現地調査予約】
+
+概算見積もり後、
+正式なお見積りは現地確認後にご案内いたします。
+
+ご希望の方はこちらからご予約ください。
+
+https://forms.gle/VgUruwEaboRBUbrE9
+
+━━━━━━━━━━━━━━`;
 }
 
 const port = process.env.PORT || 3000;
